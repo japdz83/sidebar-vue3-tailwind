@@ -21,7 +21,7 @@ defineProps({
 <template>
 	<header class="w-full bg-gray-100 mb-3 shadow-md">
 		<div class="flex justify-between items-center h-[60px]">
-			<div class="p-3 hover:bg-gray-50">
+			<div class="p-3 hover:bg-gray-50 cursor-pointer">
 				<i class="pi pi-bars"></i>
 			</div>
 
