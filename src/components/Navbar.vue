@@ -1,69 +1,59 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import InputGroup from 'primevue/inputgroup';
+import InputGroupAddon from 'primevue/inputgroupaddon';
+import Button from 'primevue/button';
+import Avatar from 'primevue/avatar';
 
 // export default{
-
+// props:{
+// 		dataOpenSideBar: Boolean
+// 	},
 
 // }
+
 defineProps({
         is_expanded: {
             type: Boolean
-        }
+        },
+		ToggleSidebar:{
+			type: Function
+		}
     })
 </script>
 
 <template>
-	<aside class="h-screen w-[300px] bg-gray-800 " id="side-bar" :class="is_expanded === true ? 'side-bar-visible' : 'side-bar-close' ">
-		<div class="bg-gray-700 h-[50px]">
-			<div
-				class="text-xl font-bold text-center flex items-center text-white justify-center h-full"
+	<header class="w-full bg-gray-100 mb-3 shadow-md">
+		<div class="flex justify-between items-center h-[60px]">
+			<button
+				class="p-3 hover:bg-gray-50 cursor-pointer"
+				@click="ToggleSidebar"
 			>
-				APP DEV
-			</div>
-		</div>
-		<div
-			class="flex flex-col justify-between h-[calc(100vh-3rem)] bg-gray-900 py-5"
-		>
-			<div class="menu-man text-left px-2 whitespace-nowrap">
-				<div
-					class="p-3 rounded-sm cursor-pointer text-gray-300 hover:text-white"
-				>
-					<router-link
-						:to="{name: 'dashboard'}"
-						class="px-2 flex space-x-2 items-center"
-					>
-						<span class="pi pi-microsoft"></span>
-						<span class="">Dashboard</span>
-					</router-link>
-				</div>
+				<i class="pi pi-bars"></i>
+			</button>
 
-				<div
-					class="p-3 rounded-sm cursor-pointer text-gray-300 hover:text-white"
-				>
-					<router-link
-						:to="{name: 'producto'}"
-						class="px-2 flex space-x-2 items-center"
-					>
-						<span class="pi pi-microsoft"></span>
-						<span class="">Producto</span>
-					</router-link>
-				</div>
+			<div class="py-2">
+				<input
+					type="text"
+					placeholder="Buscar..."
+					class="p-2 border-black"
+				/>
+			</div>
+
+			<div class="p-3 flex gap-3">
+				<span class="text-md">Admin</span>
+				<Avatar
+					icon="pi pi-user"
+					class="mr-3"
+					size="xlarge"
+					shape="circle"
+				/>
 			</div>
 		</div>
-	</aside>
+	</header>
 </template>
 
-<style>
-#side-bar{
-	overflow: hidden;
-	transition: 300ms;
-}
-
-.side-bar-visible{
-	width: 300px !important;
-}
-
-.side-bar-close{
-	width: 50px !important;
+<style scoped>
+header{
+    width: 100% !important;
 }
 </style>
