@@ -1,54 +1,69 @@
 <script setup>
-import InputGroup from 'primevue/inputgroup';
-import InputGroupAddon from 'primevue/inputgroupaddon';
-import Button from 'primevue/button';
-import Avatar from 'primevue/avatar';
+import { RouterLink } from 'vue-router'
 
 // export default{
-// props:{
-// 		dataOpenSideBar: Boolean
-// 	},
+
 
 // }
-
 defineProps({
-        openSidebar: {
+        is_expanded: {
             type: Boolean
         }
     })
 </script>
 
 <template>
-	<header class="w-full bg-gray-100 mb-3 shadow-md">
-		<div class="flex justify-between items-center h-[60px]">
-			<div class="p-3 hover:bg-gray-50 cursor-pointer">
-				<i class="pi pi-bars"></i>
-			</div>
-
-			<div class="py-2">
-				{{ openSidebar }}
-				<input
-					type="text"
-					placeholder="Buscar..."
-					class="p-2 border-black"
-				/>
-			</div>
-
-			<div class="p-3 flex gap-3">
-				<span class="text-md">Admin</span>
-				<Avatar
-					icon="pi pi-user"
-					class="mr-3"
-					size="xlarge"
-					shape="circle"
-				/>
+	<aside class="h-screen w-[300px] bg-gray-800 " id="side-bar" :class="is_expanded === true ? 'side-bar-visible' : 'side-bar-close' ">
+		<div class="bg-gray-700 h-[50px]">
+			<div
+				class="text-xl font-bold text-center flex items-center text-white justify-center h-full"
+			>
+				APP DEV
 			</div>
 		</div>
-	</header>
+		<div
+			class="flex flex-col justify-between h-[calc(100vh-3rem)] bg-gray-900 py-5"
+		>
+			<div class="menu-man text-left px-2 whitespace-nowrap">
+				<div
+					class="p-3 rounded-sm cursor-pointer text-gray-300 hover:text-white"
+				>
+					<router-link
+						:to="{name: 'dashboard'}"
+						class="px-2 flex space-x-2 items-center"
+					>
+						<span class="pi pi-microsoft"></span>
+						<span class="">Dashboard</span>
+					</router-link>
+				</div>
+
+				<div
+					class="p-3 rounded-sm cursor-pointer text-gray-300 hover:text-white"
+				>
+					<router-link
+						:to="{name: 'producto'}"
+						class="px-2 flex space-x-2 items-center"
+					>
+						<span class="pi pi-microsoft"></span>
+						<span class="">Producto</span>
+					</router-link>
+				</div>
+			</div>
+		</div>
+	</aside>
 </template>
 
-<style scoped>
-header{
-    width: 100% !important;
+<style>
+#side-bar{
+	overflow: hidden;
+	transition: 300ms;
+}
+
+.side-bar-visible{
+	width: 300px !important;
+}
+
+.side-bar-close{
+	width: 50px !important;
 }
 </style>
